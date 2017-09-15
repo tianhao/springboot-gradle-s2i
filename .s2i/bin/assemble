@@ -15,22 +15,22 @@ if [[ "$1" == "-h" ]]; then
     exec /usr/local/s2i/usage
   fi
 
-if [ -d "/tmp/artifacts/.gradle" ]; then
+if [ -d "/tmp/s2i/artifacts/.gradle" ]; then
   echo "Restoring saved artifacts from prior build..."
-  mv -f /tmp/artifacts/.gradle ${HOME}/
+  mv -f /tmp/s2i/artifacts/.gradle ${HOME}/
   else
   echo "No saved artifacts from previous build"
-  fi
+fi
 
   #If GRADLE_ARGS is unset or blank, default to "clean build -x test"
-  if [ -z "$GRADLE_ARGS" ]; then
+if [ -z "$GRADLE_ARGS" ]; then
     GRADLE_ARGS="--no-daemon clean build -x test"
     echo "---> \$GRADLE_ARGS not set, defaulting to [${GRADLE_ARGS}]"
   else
     echo "---> \$GRADLE_ARGS set with value: [${GRADLE_ARGS}]"
-  fi
+fi
 
 echo "---> Building application from source..."
-cd /tmp/src
-sh $GRADLE_HOME/bin/gradle $GRADLE_ARGS
+cd /tmp/s2i/src
+sh ${GRADLE_HOME}/bin/gradle ${GRADLE_ARGS}
 

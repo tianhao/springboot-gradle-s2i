@@ -11,7 +11,7 @@ cd /tmp
 
 #If APP_TARGET is unset or blank, default to the JAR name found (-printf grabs just jar name)
 if [ -z "$APP_TARGET" ]; then
-  APP_TARGET=`find /tmp/src/build/libs -name *.jar -printf "%f\n"`
+  APP_TARGET=`find /tmp/s2i/src/build/libs -name *.jar -printf "%f\n"`
   echo "---> \$APP_TARGET not set, defaulting to [${APP_TARGET}]"
 else
   echo "---> \$APP_TARGET set with value: [${APP_TARGET}]"
@@ -25,4 +25,4 @@ else
   echo "---> \$JAVA_OPTS set with value: [${JAVA_OPTS}]"
 fi
 
-$JAVA_HOME/bin/java $JAVA_OPTS -jar /tmp/src/build/libs/$APP_TARGET
+java ${JAVA_OPTS} -jar /tmp/s2i/src/build/libs/${APP_TARGET}
