@@ -13,17 +13,17 @@ if [[ "$1" == "-h" ]]; then
     # If the 'springboot-gradle-s2i' assemble script is executed with '-h' flag,
     # print the usage.
     exec /usr/local/s2i/usage
-  fi
+fi
 
 if [ -d "/tmp/s2i/artifacts/.gradle" ]; then
   echo "Restoring saved artifacts from prior build..."
   mv -f /tmp/s2i/artifacts/.gradle ${HOME}/
-  else
-  echo "No saved artifacts from previous build"
+else
+    echo "No saved artifacts from previous build"
 fi
 
   #If GRADLE_ARGS is unset or blank, default to "clean build -x test"
-if [ -z "$GRADLE_ARGS" ]; then
+if [ -z "${GRADLE_ARGS}" ]; then
     GRADLE_ARGS="--no-daemon clean build -x test"
     echo "---> \$GRADLE_ARGS not set, defaulting to [${GRADLE_ARGS}]"
   else
