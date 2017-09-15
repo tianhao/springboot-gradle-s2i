@@ -10,3 +10,5 @@ s2i build <source code path/URL> springboot-gradle-s2i <application image>
 You can then run the resulting image via:
 docker run <application image>
 EOF
+echo "Environment Variables:"
+`env`
